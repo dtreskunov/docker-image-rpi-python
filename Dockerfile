@@ -1,4 +1,4 @@
-FROM balenalib/balenalib/raspberrypi3-alpine-python:3.7-edge-build AS build
+FROM balenalib/raspberrypi3-alpine-python:3.7-edge-build AS build
 ARG PROTOBUF_VERSION=3.6.1
 
 ENV PREFIX_PATH=/usr/local
