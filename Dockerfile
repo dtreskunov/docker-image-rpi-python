@@ -3,6 +3,8 @@ ARG PROTOBUF_VERSION=3.6.1
 
 ENV PREFIX_PATH=/usr/local
 
+RUN cross-build-start
+
 WORKDIR /protobuf
 RUN curl --fail -L https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-python-${PROTOBUF_VERSION}.tar.gz | tar xz --strip-components=1
 RUN ./configure --prefix=${PREFIX_PATH}}
