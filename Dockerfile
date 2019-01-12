@@ -1,4 +1,4 @@
-FROM balenalib/raspberrypi3-alpine-python:3.7-build AS build
+FROM balenalib/balenalib/raspberrypi3-alpine-python:3.7-edge-build AS build
 ARG PROTOBUF_VERSION=3.6.1
 
 ENV PREFIX_PATH=/usr/local
@@ -10,14 +10,14 @@ RUN curl --fail -L https://github.com/protocolbuffers/protobuf/releases/download
 RUN ./configure --prefix=${PREFIX_PATH}}
 RUN make install
 WORKDIR /protobuf/python
-RUN python setup.py build --cpp_implementation
-RUN python setup.py test --cpp_implementation
-RUN python setup.py install --cpp_implementation --prefix=${PREFIX_PATH}
+RUN python3 setup.py build --cpp_implementation
+RUN python3 setup.py test --cpp_implementation
+RUN python3 setup.py install --cpp_implementation --prefix=${PREFIX_PATH}
 
 RUN [ "cross-build-end" ]
 
 
-FROM balenalib/raspberrypi3-alpine-python:3.7-run
+FROM balenalib/raspberrypi3-alpine-python:3.7-edge-run
 COPY --from=build /usr/local/ /usr/local/
 
 ENTRYPOINT bash
