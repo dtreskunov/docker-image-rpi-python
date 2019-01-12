@@ -7,7 +7,7 @@ RUN [ "cross-build-start" ]
 
 WORKDIR /protobuf
 RUN curl --fail -L https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-python-${PROTOBUF_VERSION}.tar.gz | tar xz --strip-components=1
-RUN ./configure --prefix=${PREFIX_PATH}}
+RUN ./configure --prefix=${PREFIX_PATH}
 RUN make install
 WORKDIR /protobuf/python
 RUN python3 setup.py build --cpp_implementation
