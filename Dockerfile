@@ -9,10 +9,10 @@ WORKDIR /protobuf
 RUN curl --fail -L https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-python-${PROTOBUF_VERSION}.tar.gz | tar xz --strip-components=1
 RUN ./configure --prefix=${PREFIX_PATH}}
 RUN make install
-RUN cd python
-RUN python3 setup.py build --cpp_implementation
-RUN python3 setup.py test --cpp_implementation
-RUN python3 setup.py install --cpp_implementation --prefix=${PREFIX_PATH}
+WORKDIR /protobuf/python
+RUN python setup.py build --cpp_implementation
+RUN python setup.py test --cpp_implementation
+RUN python setup.py install --cpp_implementation --prefix=${PREFIX_PATH}
 
 RUN [ "cross-build-end" ]
 
