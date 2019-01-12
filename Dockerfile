@@ -1,7 +1,7 @@
 FROM balenalib/raspberrypi3-alpine-python:3.7-edge-build AS build
 ARG PROTOBUF_VERSION=3.6.1
 
-ENV PREFIX_PATH=/usr/local
+ENV PREFIX_PATH=/opt
 
 RUN [ "cross-build-start" ]
 
@@ -18,6 +18,6 @@ RUN [ "cross-build-end" ]
 
 
 FROM balenalib/raspberrypi3-alpine-python:3.7-edge-run
-COPY --from=build /usr/local/ /usr/local/
+COPY --from=build /opt/ /usr/local/
 
 ENTRYPOINT bash
